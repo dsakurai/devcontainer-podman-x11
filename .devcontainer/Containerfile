@@ -6,7 +6,7 @@ RUN apt update && \
     rm -rf /var/lib/apt/lists/*
 
 # For VSCode
-RUN adduser --disabled-password --gecos "" vscode
+RUN useradd -m -c "" vscode
 
 # For doing sudo operations (rather dangerous)
 # RUN adduser vscode sudo && \
