@@ -3,7 +3,7 @@
     "build": {
       "dockerfile": "Containerfile"
     },
-    "remoteUser": "vscode",
+    "remoteUser": "vscode", // Set to `root` to connect as root. https://aka.ms/vscode-remote/containers/non-root.
     "containerEnv": {
         "HOME": "/home/vscode"
     },
