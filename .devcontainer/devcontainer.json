@@ -1,0 +1,24 @@
+{
+    "name": "Dev Container",
+    "build": {
+      "dockerfile": "Dockerfile"
+    },
+    "remoteUser": "vscode",
+    "containerEnv": {
+        "HOME": "/home/vscode"
+    },
+    
+    "workspaceMount": "",
+    "runArgs": [
+        "--userns=keep-id",
+        "--volume=${localWorkspaceFolder}:/workspaces/${localWorkspaceFolderBasename}:Z",
+        "--pull=newer" // Pull newer images on each build
+    ],
+
+    "features": {
+        // SSH-agent forwarding
+        "git": "os-provided",
+        "sshd": "latest"
+   }
+
+}
