@@ -1,15 +1,14 @@
 FROM debian:stable-slim
 
-RUN apt update && \
-    apt install -y git curl vim sudo && \
-    # Clean up apt cache when done
-    rm -rf /var/lib/apt/lists/*
-
 # For VSCode
 RUN useradd -m -c "" -s /bin/bash vscode
 
 # For doing sudo operations (rather dangerous)
- RUN usermod -aG sudo vscode && \
-    echo "vscode ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/nopasswd
+# RUN apt update && \
+#     apt install -y sudo && \
+#     # Clean up apt cache when done
+#     rm -rf /var/lib/apt/lists/*
+# RUN usermod -aG sudo vscode && \
+#    echo "vscode ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/nopasswd
 
 USER vscode
