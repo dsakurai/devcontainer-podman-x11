@@ -11,4 +11,15 @@ RUN useradd -m -c "" -s /bin/bash vscode
 # RUN usermod -aG sudo vscode && \
 #    echo "vscode ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/nopasswd
 
+RUN mkdir -p "/workspace" && \
+    chown vscode:vscode "/workspace" && \
+    chmod 0755 "/workspace"
+
+# For X11
+RUN apt update && \
+    apt install -y x11-apps && \
+    # Clean up apt cache when done
+    rm -rf /var/lib/apt/lists/*
+
+
 USER vscode

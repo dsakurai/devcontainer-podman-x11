@@ -4,21 +4,18 @@
       "dockerfile": "Containerfile"
     },
     "remoteUser": "vscode", // Set to `root` to connect as root. https://aka.ms/vscode-remote/containers/non-root.
-    "containerEnv": {
-        "HOME": "/home/vscode"
-    },
     
-    "workspaceMount": "",
+    "workspaceFolder": "/workspace",
     "runArgs": [
-        "--userns=keep-id",
-        "--volume=${localWorkspaceFolder}:/workspaces/${localWorkspaceFolderBasename}:Z",
-        "--pull=newer" // Pull newer images on each build
-    ],
-
-    "features": {
-        // SSH-agent forwarding
-        "git": "os-provided",
-        "sshd": "latest"
-   }
+        "--volume=${localWorkspaceFolder}:/workspace:Z",
+        "--pull=newer", // Pull newer images on each build
+        
+        // XWindow GUI
+        "--security-opt", "label=type:container_runtime_t",
+        "-v", "${env:XAUTHORITY}:/tmp/.Xauthority:ro",
+        "-e", "DISPLAY",
+        "-e", "XAUTHORITY=/tmp/.Xauthority",
+        "-v", "/tmp/.X11-unix:/tmp/.X11-unix:ro"
+    ]
 
 }
